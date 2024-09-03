@@ -41,7 +41,14 @@ public class B_enum {
                 break;
         }
     }
-    public static void main(String[] args) {
 
+    public static void exam2(){
+        // 모든 값을 순회
+        for(B_day_2 day :B_day_2.values()){
+            System.out.println((day.ordinal()+1)+" : "+day.name()+" : "+day.getDescription());
+        }
+    }
+    public static void main(String[] args) {
+        exam2();
     }
 }

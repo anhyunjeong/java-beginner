@@ -14,29 +14,6 @@ package himedia.java;
 
 
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-
-class A_person{
-    String name;
-    int age;
-    public A_person(String name, int age){
-        this.name=name;
-        this.age=age;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public int getAge(){
-        return age;
-    }
-
-    @Override
-    public String toString() {
-        return name +"("+age+")";
-    }
-}
 
 
 public class A_collections_queue {
@@ -122,6 +99,7 @@ public class A_collections_queue {
         Comparator<A_person> ageComp=new Comparator<A_person>() {
             @Override
             public int compare(A_person o1, A_person o2) {
+
                 return Integer.compare(o1.getAge(), o2.getAge());
             }
         };
@@ -156,6 +134,7 @@ public class A_collections_queue {
         Comparator<A_person> ageComp = new Comparator<A_person>() {
             @Override
             public int compare(A_person o1, A_person o2) {
+
                 return Integer.compare(o2.getAge(),o1.getAge());
             }
         };
@@ -179,6 +158,7 @@ public class A_collections_queue {
         Comparator<A_person> nameComp   =new Comparator<A_person>() {
             @Override
             public int compare(A_person o1, A_person o2) {
+
                 return o1.getName().compareTo(o2.getName());
             }
         };
@@ -200,6 +180,7 @@ public class A_collections_queue {
         Comparator<A_person> nameComp  = new Comparator<A_person>() {
             @Override
             public int compare(A_person o1, A_person o2) {
+
                 return o2.getName().compareTo(o1.getName());
             }
         };
