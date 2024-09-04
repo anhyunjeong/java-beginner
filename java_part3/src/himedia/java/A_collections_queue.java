@@ -14,8 +14,51 @@ package himedia.java;
 
 
 import java.util.*;
+class A_person {
+    String name;
+    int age;
 
+    public A_person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return name + "(" + age + ")";
+    }
+}
+
+class Graph {
+    private LinkedList<Integer>[] graphList;
+
+    public Graph(int vertexCount) {
+        this.graphList = new LinkedList[vertexCount+1];
+
+        //각 인접리스트 초기화
+        for(int i=0;i<graphList.length;i++){
+            graphList[i]=new LinkedList<>();
+        }
+    }
+
+    //간선추가
+    public void addEdge(int v, int w){//인접리스트 w
+        graphList[v].add(w);
+        graphList[w].add(v);
+    }
+
+    public LinkedList<Integer>[] getGraphList() {
+        return graphList;
+    }
+}
 public class A_collections_queue {
 
     // 1. LinkedList
@@ -214,7 +257,44 @@ public class A_collections_queue {
         //Poll : 큐에서 요소 제거 및 반환
         System.out.println("Poll : "+arrayQueue.poll());
     }
+
+    public static void exam4(){
+        boolean[] visited=new boolean[9+1];
+//        Boolean visited1 = false; // 값을 안 넣으면 null;로 설정 이미 초기화 되어있음
+
+        Graph graph=new Graph(9);
+        graph.addEdge(1,2);
+        graph.addEdge(1,3);
+        graph.addEdge(2,3);
+        graph.addEdge(2,4);
+        graph.addEdge(2,6);
+        graph.addEdge(3,7);
+        graph.addEdge(4,5);
+        graph.addEdge(4,7);
+        graph.addEdge(4,8);
+        graph.addEdge(5,6);
+        graph.addEdge(7,8);
+        graph.addEdge(8,9);
+
+        //탐색 - BFS
+        int startVertex=1;
+        Queue<Integer> queue=new LinkedList<>();
+        visited[startVertex]=true;
+        queue.add(startVertex);
+        while(queue.size()>0){
+            int vertex=queue.poll();
+            System.out.print(vertex+"->");
+
+            // 현재 정점의 인접 정점들 중 방문하지 않은 정점을 모두 큐에 추가
+            for(int w:graph.getGraphList()[vertex]){
+                if(!visited[w]){
+                    queue.add(w);
+                    visited[w]=true;
+                }
+            }
+        }
+    }
     public static void main(String[] args) {
-        exam2_5();
+        exam4();
     }
 }
